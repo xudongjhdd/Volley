@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 /**
  * @author dong.xu
+ * @Email:99799543@qq.com
  * 2016/07/27
  * 1 Volley二次封装
  * 2 利用volley下载图片 并加入公司Referer 防止盗链
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements UIDataListener ,V
 	//			"regMsg": null
 	//}
 	//}
+	//此URL 换成你需要请求的连接
     String url = "http://qas-ecosystem-api.ecovacs.cn/v1/private/5ee1724328a09dff91a42b0202d1e837/eco_e/1.0.0/rd4/1/user/login_test?account=18550009543&password=25f9e794323b453885f5181f1b624d0b";
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements UIDataListener ,V
 	@Override public void onDataChanged(JSONObject data, String tag) {
 
 		//正确返回的服务器数据
-		//Toast.makeText(getParent(),data.toString(),Toast.LENGTH_LONG);
 		Log.i("onDataChanged", data.toString());
         //返回data字段数据  ：{"uid":9999999,"userName":"18550009543","nickName":null,"ico":null,"accessToken":"123_test","regMsg":null}
 		Gson gson = new Gson();
