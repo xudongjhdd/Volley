@@ -1,6 +1,14 @@
 # Volley
 Volley二次封装 及利用volley下载图片 并加入公司Referer防止盗链
 
+加入 Volley库与GOSON库
+app  build.gradle中加入
+  //导入volley 网络请求框架
+  compile 'com.mcxiaoke.volley:library:1.0.19'
+  //导入Gson库
+  compile 'com.google.code.gson:gson:2.3.1'
+
+
 1.加入下载图片HTTP请求中的Referer
 重写Volley自带的ImageLoader->MyImageLoader 目的是为了调用重写的MyImageRequest
 protected Request<Bitmap> makeImageRequest(String requestUrl, int maxWidth, int maxHeight, ImageView.ScaleType scaleType, final String cacheKey) {
