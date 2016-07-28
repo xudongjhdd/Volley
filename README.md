@@ -15,8 +15,6 @@ app  build.gradle中加入
 ####################################################################################
 1.加入下载图片HTTP请求中的Referer
 重写Volley自带的ImageLoader->MyImageLoader 目的是为了调用重写的MyImageRequest
-protected Request<Bitmap> makeImageRequest(String requestUrl, int maxWidth, int maxHeight, ImageView.ScaleType scaleType, final String cacheKey) {
-		//return super.makeImageRequest(requestUrl, maxWidth, maxHeight, scaleType, cacheKey);
 
 		@Override
     	protected Request<Bitmap> makeImageRequest(String requestUrl, int maxWidth, int maxHeight, ImageView.ScaleType scaleType, final String cacheKey) {
