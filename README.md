@@ -35,7 +35,7 @@ networkHelper.sendGETRequest(url, null,MainActivity.this,"requestTag",true);
 第二个参数 null:不需要传递
 第三个参数 MainActivity.this 是接口传入以便网络请求的回调
 因为 MainActivity已经实现回掉方法 MainActivity extends AppCompatActivity implements UIDataListener
-所以网络请求数据在以下三个函数实现数据回掉
+所以网络请求数据在以下三个函数实现数据回调
 
 
 		@Override public void onDataChanged(JSONObject data, String tag) {
@@ -61,5 +61,10 @@ onErrorHappened(String errorCode, String errorMessage, String tag)
 
 这两个函数中的tag 意义区分是哪个网络请求的回调，这样就会便用不同的请求不同的处理方式
 
-讲完了，希望可以在你用到volley框架中用所帮助。
+第五个参数 true 是在请求中加入了LoadingDialog 这样你不需要关于网络请求中何时打开与关闭LoadingDialog
+想在网络请求中显示 LoadingDialog，传入true即可。
+
+
+讲完了，希望可以在你用到volley框架中用所帮助，讲的不好请提建议，谢谢！
+
 有什么不明白可以联系我 99799543@qq.com
