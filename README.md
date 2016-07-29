@@ -42,10 +42,13 @@ app  build.gradle中加入
 headers.put("Referer", "yourcompany");//防止盗链接 此值与后台服务器协商决定 不是此值的图片请求被认为不合法请求
 
 2.Volley网络请求
-
+```java
 NetworkHelper networkHelper = new NetworkHelper(this);
+```
 //Get方法调用
+```java
 networkHelper.sendGETRequest(url, null,MainActivity.this,"requestTag",true);
+```
 第一个参数 url:这个就是你用于网络请求的url地址
 第二个参数 null:不需要传递
 第三个参数 MainActivity.this 是接口传入以便网络请求的回调
@@ -71,9 +74,10 @@ networkHelper.sendGETRequest(url, null,MainActivity.this,"requestTag",true);
 	}
 
 第四个参数 "requestTag" 传入以便区分是哪个网络请求
+```java
 onDataChanged(JSONObject data, String tag)
 onErrorHappened(String errorCode, String errorMessage, String tag)
-
+```
 这两个函数中的tag 意义区分是哪个网络请求的回调，这样就会便用不同的请求不同的处理方式
 
 第五个参数 true 是在请求中加入了LoadingDialog 这样你不需要关于网络请求中何时打开与关闭LoadingDialog
