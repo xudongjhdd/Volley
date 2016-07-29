@@ -6,17 +6,21 @@ Volley二次封装 及利用volley下载图片 并加入公司Referer防止盗�
 app  build.gradle中加入
 
   //导入volley 网络请求框架
+  ```groovy
   compile 'com.mcxiaoke.volley:library:1.0.19'
+  ```
   
   //导入Gson库
+  ```groovy
   compile 'com.google.code.gson:gson:2.3.1'
+  ```
 ##具体代码说明
 ![](http://www.sinaimg.cn/dy/slidenews/2_img/2016_30/730_1867800_413643.jpg)
 ####################################################################################
 1.加入下载图片HTTP请求中的Referer
 重写Volley自带的ImageLoader->MyImageLoader 目的是为了调用重写的MyImageRequest
-
-		@Override
+```java
+	@Override
     	protected Request<Bitmap> makeImageRequest(String requestUrl, int maxWidth, int maxHeight, ImageView.ScaleType scaleType, final String cacheKey) {
     		//return super.makeImageRequest(requestUrl, maxWidth, maxHeight, scaleType, cacheKey);
     
@@ -33,6 +37,7 @@ app  build.gradle中加入
     		});
     
     	}
+```
 重写ImageRequest的目的是在getHeaders()函数中加入http Referer
 headers.put("Referer", "yourcompany");//防止盗链接 此值与后台服务器协商决定 不是此值的图片请求被认为不合法请求
 
