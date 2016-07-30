@@ -70,7 +70,7 @@ public class NetworkHelper implements Response.Listener<JSONObject>, ErrorListen
 
 		this.uiDataListener = uiDataListener;
 		this.tag = tag;
-//		if (ToolNetwork.isNetworkConnected(this.context)) {
+
 
 			if (mLoadingDialog != null && isShowLoadingDialog) {
 				Activity activity = (Activity) context;
@@ -78,10 +78,7 @@ public class NetworkHelper implements Response.Listener<JSONObject>, ErrorListen
 			}
 
 			VolleyQueueController.getQueue(context).add(getRequestForGet(url, params));
-		//} else {
-		//	Log.i("无网络：", "无网络");
-		//	notifyErrorHappened(ErrorCode.NoNetWork, "无网络");//无网络出错
-		//}
+
 	}
 
 	public void sendPostRequest(String url, Map<String, String> params,

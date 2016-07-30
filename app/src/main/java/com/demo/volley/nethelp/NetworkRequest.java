@@ -108,7 +108,6 @@ public class NetworkRequest extends JsonRequest<JSONObject>
         return url + "?" + URLEncodedUtils.format(params, "UTF-8");
     }
 
- //-----xudong------------
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {

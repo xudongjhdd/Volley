@@ -72,17 +72,19 @@ public class MainActivity extends AppCompatActivity
 
 	@Override public void onErrorHappened(String errorCode, String errorMessage, String tag) {
 		//正确返回的服务器数据出错
+		Toast.makeText(MainActivity.this, "网络出错："+errorCode+errorMessage, Toast.LENGTH_LONG).show();
 	}
 
 	@Override public void onTokenTimeOutError(String code) {
 		//服务器Token失效
+		Toast.makeText(MainActivity.this, "服务器Token失效："+code, Toast.LENGTH_LONG).show();
 	}
 
 	@Override public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.reqbutton://volley 网络请求
-				NetworkHelper networkHelper = new NetworkHelper(this);
-				networkHelper.sendGETRequest(url, null, MainActivity.this, "requestTag", true);
+				NetworkHelper networkHelper = new NetworkHelper(getApplication());
+				networkHelper.sendGETRequest(url, null, MainActivity.this, "requestTag", true);//Get请求
 				break;
 			case R.id.picbutton:
 				//下载图片并已加入公司相关Referer
