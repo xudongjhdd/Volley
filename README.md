@@ -15,7 +15,7 @@ app  build.gradle中加入
   compile 'com.google.code.gson:gson:2.3.1'
   ```
 ##具体代码说明
-![](http://www.sinaimg.cn/dy/slidenews/2_img/2016_30/730_1867800_413643.jpg)
+![](https://github.com/xudongjhdd/Volley/blob/master/volley.gif)
 ####################################################################################
 1.加入下载图片HTTP请求中的Referer
 重写Volley自带的ImageLoader->MyImageLoader 目的是为了调用重写的MyImageRequest
