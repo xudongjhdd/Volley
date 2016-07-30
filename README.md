@@ -137,8 +137,9 @@ NetworkHelper implements Response.Listener<JSONObject>, ErrorListener
 ```
 
 disposeResponse函数处理：
-	protected void disposeResponse(JSONObject response) throws JSONException {
 ```java
+	protected void disposeResponse(JSONObject response) throws JSONException {
+
 		if (response != null) {
 
 			if (response.has("code") && response.getString("code")
