@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.demo.volley.bean.LoginBean;
 import com.demo.volley.nethelp.NetworkHelper;
 import com.demo.volley.nethelp.UIDataListener;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity
 
 	ImageView img;
 	Button reqBtn;
+	Button picbutton;
 	//换成公司URL链接
 	//返回服务器数据：
 	//{
@@ -47,12 +50,11 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 		img = (ImageView) findViewById(R.id.imageView);
 		reqBtn = (Button) findViewById(R.id.reqbutton);
-		//下载图片并已加入公司相关Referer
-		ToolImage.setImageLoader(img,
-				"http://www.sinaimg.cn/dy/slidenews/2_img/2016_30/730_1867800_413643.jpg", this,
-				R.mipmap.ic_launcher, R.mipmap.ic_launcher);
+		picbutton = (Button) findViewById(R.id.picbutton);
+
 
 		reqBtn.setOnClickListener(this);
+		picbutton.setOnClickListener(this);
 	}
 
 	@Override public void onDataChanged(JSONObject data, String tag) {
@@ -63,6 +65,9 @@ public class MainActivity extends AppCompatActivity
 		Gson gson = new Gson();
 		LoginBean status = gson.fromJson(data.toString(), LoginBean.class);
 		Log.i("onDataChanged", status.getUserName());
+
+		Toast.makeText(MainActivity.this, "服务器返回数据如下："+data.toString(), Toast.LENGTH_LONG).show();
+
 	}
 
 	@Override public void onErrorHappened(String errorCode, String errorMessage, String tag) {
@@ -78,6 +83,12 @@ public class MainActivity extends AppCompatActivity
 			case R.id.reqbutton://volley 网络请求
 				NetworkHelper networkHelper = new NetworkHelper(this);
 				networkHelper.sendGETRequest(url, null, MainActivity.this, "requestTag", true);
+				break;
+			case R.id.picbutton:
+				//下载图片并已加入公司相关Referer
+				ToolImage.setImageLoader(img,
+						"http://www.sinaimg.cn/dy/slidenews/2_img/2016_30/730_1867800_413643.jpg", this,
+						R.mipmap.ic_launcher, R.mipmap.ic_launcher);
 				break;
 		}
 	}
