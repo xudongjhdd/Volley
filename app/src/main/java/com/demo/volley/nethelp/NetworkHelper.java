@@ -77,13 +77,16 @@ public class NetworkHelper implements Response.Listener<JSONObject>, ErrorListen
 				mLoadingDialog.show(activity.getFragmentManager(), "http");
 			}
 
-			VolleyQueueController.getQueue(context).add(getRequestForGet(url, params));
+			//VolleyQueueController.getQueue(context).add(getRequestForGet(url, params));
+		    VolleyQueueController.getStethoRequestQueue(context).add(getRequestForGet(url, params));
 
 	}
 
 	public void sendPostRequest(String url, Map<String, String> params,
 			UIDataListener uiDataListener, String tag) {
 		VolleyQueueController.getQueue(context).add(getRequestForPost(url, params));
+		//VolleyQueueController.getStethoRequestQueue(context).add(getRequestForPost(url, params));
+
 		this.uiDataListener = uiDataListener;
 		this.tag = tag;
 	}

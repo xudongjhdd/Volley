@@ -3,6 +3,8 @@ package com.demo.volley;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.stetho.Stetho;
+
 /**
  * 整个应用程序Applicaiton
  *
@@ -36,6 +38,14 @@ public class MApplication extends Application{
 		super.onCreate();
 
 		instance = this;
+
+		Stetho.initialize(
+				Stetho.newInitializerBuilder(this)
+						.enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+						.enableWebKitInspector(Stetho.defaultInspectorModulesProvider
+								(this))
+						.build());
+
 
 
 	}

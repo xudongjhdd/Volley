@@ -1,6 +1,6 @@
 # Volley
-Volley二次封装 及利用volley下载图片 并加入公司Referer防止盗链
-
+###Volley二次封装 及利用volley下载图片 并加入公司Referer防止盗链
+###Stetho调试Volley
 ##依赖库
 加入 Volley库与GOSON库
 app  build.gradle中加入
@@ -188,9 +188,57 @@ disposeResponse函数处理：
 		}
 	}
 ```
+
+##加入 stetho调试Volley
+
+###1 加入库
+app  build.gradle中加入
+ ```groovy
+   compile 'com.facebook.stetho:stetho:1.3.1'
+   compile 'com.facebook.stetho:stetho-okhttp:1.3.1'
+   compile 'com.squareup.okhttp:okhttp:2.3.0'
+ ```
+  
+###2 MApplicaton.java  Create() 中加入
+```java
+Stetho.initialize(
+	Stetho.newInitializerBuilder(this)
+			.enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+			.enableWebKitInspector(Stetho.defaultInspectorModulesProvider
+					(this))
+			.build());
+```
+
+###3 VolleyQueueController.java 中加入getStethoRequestQueue函数
+```java
+public static RequestQueue getStethoRequestQueue(Context context) {
+		// lazy initialize the request queue, the queue instance will be
+		// created when it is accessed for the first time
+		if (requestQueue == null) {
+			OkHttpClient client = new OkHttpClient();
+			client.networkInterceptors().add(new StethoInterceptor());
+			requestQueue = Volley.newRequestQueue(context, new
+					OkHttpStack(client));
+		}
+		return requestQueue;
+	}
+```
+
+###4 NetworkHelper.java 
+```java
+	//VolleyQueueController.getQueue(context).add(getRequestForGet(url, params));
+	VolleyQueueController.getStethoRequestQueue(context).add(getRequestForGet(url, params));
+```
+###5 chrome 浏览器中打开 
+chrome://inspect/#devices
+![](https://github.com/xudongjhdd/Volley/blob/master/volley1.png)
+![](https://github.com/xudongjhdd/Volley/blob/master/volley2.png)
+
+
 讲完了，希望可以在你用到volley框架中用所帮助，讲的不好请提建议，谢谢！
 
 亲，喜欢就start一下吧,有什么不明白可以联系我
+
 
 #联系方式
 邮箱：99799543@qq.com
